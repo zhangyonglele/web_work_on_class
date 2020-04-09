@@ -1,0 +1,127 @@
+
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 1800s
+  tomcat:
+    uri-encoding: UTF-8
+    protocol-header: x-forwarded-proto
+  use-forward-headers: true
+
+
+
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+
+mybatis:
+  type-aliases-package: com/work/web_work_on_class/model
+  mapper-locations: classpath:mapping/*.xml
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/manage_project?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+    password: 168168
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+
+  http:
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
+  #Redis config
+  redis:
+    port: 6379
+    host: 127.0.0.1
+    # Redis password
+    #password: 123456
+    # connection timeout maximum accept 2000ms
+    timeout: 2000ms
+    jedis:
+      pool:
+        # Maximum connection pool size
+        max-active: 8
+        # Maximum blocking time accept, negative number represent no limitation
+        max-wait: -1ms
+        # Maximum free connection accept
+        max-idle: 8
+        # Minimum free connection accept
+        min-idle: 0
+  cache:
+    redis:
+      ## Entry expiration in milliseconds. By default the entries never expire.
+      time-to-live: 1d
+      # Writing to Redis need key prefix
+      use-key-prefix: true
+
+  session:
+    store-type: redis
+    timeout: 30M
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+---
+
+spring:
+  profiles: online
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/manage_project?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+    password: Yongle@lol0418
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 5MB
+
+    http:
+      encoding:
+        force: true
+        charset: utf-8
+        enabled: true
+    #Redis config
+    redis:
+      port: 6379
+      host: 127.0.0.1
+      # Redis password
+      #password: 123456
+      # connection timeout maximum accept 2000ms
+      timeout: 2000ms
+      jedis:
+        pool:
+          # Maximum connection pool size
+          max-active: 8
+          # Maximum blocking time accept, negative number represent no limitation
+          max-wait: -1ms
+          # Maximum free connection accept
+          max-idle: 8
+          # Minimum free connection accept
+          min-idle: 0
+    cache:
+      redis:
+        ## Entry expiration in milliseconds. By default the entries never expire.
+        time-to-live: 1d
+        # Writing to Redis need key prefix
+        use-key-prefix: true
+
+    session:
+      store-type: redis
+      timeout: 30M
+    jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
