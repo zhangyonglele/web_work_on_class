@@ -8,11 +8,11 @@
 https://github.com/kokola99/vue_web
 
 ## 内容列表
-- [Background](##Background)
+- [Background](#Background)
 
-- [deploy](##项目部署)
+- [deploy](#项目部署)
  
-## Background
+# Background
 该项目用于解决项目小组内部合作的部分问题，比如说项目任务发布，项目进度时间线监控，项目公告和周报等问题的小型轻解决方案。
 
 用户通过创建项目小组，将项目成员添加入小组内，组长可以发布通过发布任务，查看周报月报，制定项目计划。
@@ -21,7 +21,7 @@ https://github.com/kokola99/vue_web
 
 项目场景适用于小型团队中的任务管理和进度管理，方便快捷。
 
-## 项目部署
+# 项目部署
 将项目克隆至本地，在 Java11 的环境下编译打包。
 
 在服务器中运行后台指令。进行项目部署。
