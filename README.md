@@ -8,9 +8,9 @@
 https://github.com/kokola99/vue_web
 
 ## 内容列表
--[Background](##Background)
+- [Background](##Background)
 
--[deploy](##项目部署)
+- [deploy](##项目部署)
  
 ## Background
 该项目用于解决项目小组内部合作的部分问题，比如说项目任务发布，项目进度时间线监控，项目公告和周报等问题的小型轻解决方案。
