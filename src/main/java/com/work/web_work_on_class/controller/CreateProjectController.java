@@ -2,8 +2,10 @@ package com.work.web_work_on_class.controller;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import com.work.web_work_on_class.filter.annotation.LoginRequire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +23,14 @@ import com.work.web_work_on_class.util.UniversalResponseBody;
 @RestController
 public class CreateProjectController {
 
-	@Autowired
+	@Resource
 	ProjectGroupService projectGroupService;
-	@Autowired
+
+	@Resource
 	UserGroupRelationService userGroupRelationService;
 	
 	@PostMapping("/ProjectGroup/new")
+	@LoginRequire("user")
     public UniversalResponseBody register(@RequestParam("groupName")String groupName,
                                           @RequestParam("groupBeginDate")String groupBeginDate,
                                           @RequestParam("groupEndDate")String groupEndDate,

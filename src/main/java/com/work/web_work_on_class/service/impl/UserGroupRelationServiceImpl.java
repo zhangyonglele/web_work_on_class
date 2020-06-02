@@ -5,10 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.work.web_work_on_class.mapper.UserGroupRelationMapper;
 import com.work.web_work_on_class.model.UserGroupRelation;
 import com.work.web_work_on_class.service.UserGroupRelationService;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+@Service
 public class UserGroupRelationServiceImpl implements UserGroupRelationService {
 	
-	@Autowired
+	@Resource
 	UserGroupRelationMapper userGroupRelationMapper;
 
 	@Override

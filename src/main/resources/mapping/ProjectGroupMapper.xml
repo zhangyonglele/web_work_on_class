@@ -7,12 +7,12 @@
     <result column="group_begin_date" jdbcType="TIMESTAMP" property="groupBeginDate" />
     <result column="group_end_date" jdbcType="TIMESTAMP" property="groupEndDate" />
     <result column="group_can_be_search" jdbcType="INTEGER" property="groupCanBeSearch" />
-    <result column="group_creater" jdbcType="INTEGER" property="groupCreater" />
+    <result column="group_creator" jdbcType="INTEGER" property="groupCreator" />
     <result column="group_introduction" jdbcType="VARCHAR" property="groupIntroduction" />
     <result column="group_status" jdbcType="INTEGER" property="groupStatus" />
   </resultMap>
   <sql id="Base_Column_List">
-    group_id, group_name, group_begin_date, group_end_date, group_can_be_search, group_creater, 
+    group_id, group_name, group_begin_date, group_end_date, group_can_be_search, group_creator,
     group_introduction, group_status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -27,10 +27,10 @@
   </delete>
   <insert id="insert" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroup" useGeneratedKeys="true">
     insert into project_group (group_name, group_begin_date, group_end_date, 
-      group_can_be_search, group_creater, group_introduction, 
+      group_can_be_search, group_creator, group_introduction,
       group_status)
     values (#{groupName,jdbcType=VARCHAR}, #{groupBeginDate,jdbcType=TIMESTAMP}, #{groupEndDate,jdbcType=TIMESTAMP}, 
-      #{groupCanBeSearch,jdbcType=INTEGER}, #{groupCreater,jdbcType=INTEGER}, #{groupIntroduction,jdbcType=VARCHAR}, 
+      #{groupCanBeSearch,jdbcType=INTEGER}, #{groupCreator,jdbcType=INTEGER}, #{groupIntroduction,jdbcType=VARCHAR},
       #{groupStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroup" useGeneratedKeys="true">
@@ -48,8 +48,8 @@
       <if test="groupCanBeSearch != null">
         group_can_be_search,
       </if>
-      <if test="groupCreater != null">
-        group_creater,
+      <if test="groupCreator != null">
+        group_creator,
       </if>
       <if test="groupIntroduction != null">
         group_introduction,
@@ -71,8 +71,8 @@
       <if test="groupCanBeSearch != null">
         #{groupCanBeSearch,jdbcType=INTEGER},
       </if>
-      <if test="groupCreater != null">
-        #{groupCreater,jdbcType=INTEGER},
+      <if test="groupCreator != null">
+        #{groupCreator,jdbcType=INTEGER},
       </if>
       <if test="groupIntroduction != null">
         #{groupIntroduction,jdbcType=VARCHAR},
@@ -97,8 +97,8 @@
       <if test="groupCanBeSearch != null">
         group_can_be_search = #{groupCanBeSearch,jdbcType=INTEGER},
       </if>
-      <if test="groupCreater != null">
-        group_creater = #{groupCreater,jdbcType=INTEGER},
+      <if test="groupCreator != null">
+        group_creator = #{groupCreator,jdbcType=INTEGER},
       </if>
       <if test="groupIntroduction != null">
         group_introduction = #{groupIntroduction,jdbcType=VARCHAR},
@@ -115,7 +115,7 @@
       group_begin_date = #{groupBeginDate,jdbcType=TIMESTAMP},
       group_end_date = #{groupEndDate,jdbcType=TIMESTAMP},
       group_can_be_search = #{groupCanBeSearch,jdbcType=INTEGER},
-      group_creater = #{groupCreater,jdbcType=INTEGER},
+      group_creator = #{groupCreator,jdbcType=INTEGER},
       group_introduction = #{groupIntroduction,jdbcType=VARCHAR},
       group_status = #{groupStatus,jdbcType=INTEGER}
     where group_id = #{groupId,jdbcType=INTEGER}

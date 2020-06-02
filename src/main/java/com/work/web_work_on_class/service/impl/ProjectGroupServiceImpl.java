@@ -7,10 +7,12 @@ import com.work.web_work_on_class.service.ProjectGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class ProjectGroupServiceImpl implements ProjectGroupService {
     
-	@Autowired
+	@Resource
 	private ProjectGroupMapper projectGroupMapper;
 	
 	@Override

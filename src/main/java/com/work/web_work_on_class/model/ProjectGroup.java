@@ -20,7 +20,7 @@ public class ProjectGroup implements Serializable {
 
     private Integer groupCanBeSearch;
 
-    private Integer groupCreater;
+    private Integer groupCreator;
 
     private String groupIntroduction;
 
@@ -28,12 +28,12 @@ public class ProjectGroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    public ProjectGroup(String groupName, Date groupBeginDate, Date groupEndDate, Integer groupCanBeSearch, Integer groupCreater, String groupIntroduction) {
+    public ProjectGroup(String groupName, Date groupBeginDate, Date groupEndDate, Integer groupCanBeSearch, Integer groupCreator, String groupIntroduction) {
     	this.groupName = groupName;
     	this.groupBeginDate = groupBeginDate;
     	this.groupEndDate = groupEndDate;
     	this.groupCanBeSearch = groupCanBeSearch;
-    	this.groupCreater = groupCreater;
+    	this.groupCreator = groupCreator;
     	this.groupIntroduction = groupIntroduction;
     	this.groupStatus = 0;
     }
@@ -78,12 +78,12 @@ public class ProjectGroup implements Serializable {
 		this.groupCanBeSearch = groupCanBeSearch;
 	}
 
-	public Integer getGroupCreater() {
-		return groupCreater;
+	public Integer getGroupCreator() {
+		return groupCreator;
 	}
 
-	public void setGroupCreater(Integer groupCreater) {
-		this.groupCreater = groupCreater;
+	public void setGroupCreator(Integer groupCreator) {
+		this.groupCreator = groupCreator;
 	}
 
 	public String getGroupIntroduction() {
