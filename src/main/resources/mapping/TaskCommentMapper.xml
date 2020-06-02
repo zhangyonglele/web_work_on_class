@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.web_work_on_class.mapper.TaskCommentMapper">
+  <resultMap id="BaseResultMap" type="com.work.web_work_on_class.model.TaskComment">
+    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="comment_for" jdbcType="INTEGER" property="commentFor" />
+    <result column="comment_from" jdbcType="INTEGER" property="commentFrom" />
+    <result column="comment_contain" jdbcType="VARCHAR" property="commentContain" />
+    <result column="comment_date" jdbcType="TIMESTAMP" property="commentDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    comment_id, comment_for, comment_from, comment_contain, comment_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task_comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="comment_id" keyProperty="commentId" parameterType="com.work.web_work_on_class.model.TaskComment" useGeneratedKeys="true">
+    insert into task_comment (comment_for, comment_from, comment_contain, 
+      comment_date)
+    values (#{commentFor,jdbcType=INTEGER}, #{commentFrom,jdbcType=INTEGER}, #{commentContain,jdbcType=VARCHAR}, 
+      #{commentDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="comment_id" keyProperty="commentId" parameterType="com.work.web_work_on_class.model.TaskComment" useGeneratedKeys="true">
+    insert into task_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentFor != null">
+        comment_for,
+      </if>
+      <if test="commentFrom != null">
+        comment_from,
+      </if>
+      <if test="commentContain != null">
+        comment_contain,
+      </if>
+      <if test="commentDate != null">
+        comment_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentFor != null">
+        #{commentFor,jdbcType=INTEGER},
+      </if>
+      <if test="commentFrom != null">
+        #{commentFrom,jdbcType=INTEGER},
+      </if>
+      <if test="commentContain != null">
+        #{commentContain,jdbcType=VARCHAR},
+      </if>
+      <if test="commentDate != null">
+        #{commentDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.work.web_work_on_class.model.TaskComment">
+    update task_comment
+    <set>
+      <if test="commentFor != null">
+        comment_for = #{commentFor,jdbcType=INTEGER},
+      </if>
+      <if test="commentFrom != null">
+        comment_from = #{commentFrom,jdbcType=INTEGER},
+      </if>
+      <if test="commentContain != null">
+        comment_contain = #{commentContain,jdbcType=VARCHAR},
+      </if>
+      <if test="commentDate != null">
+        comment_date = #{commentDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.work.web_work_on_class.model.TaskComment">
+    update task_comment
+    set comment_for = #{commentFor,jdbcType=INTEGER},
+      comment_from = #{commentFrom,jdbcType=INTEGER},
+      comment_contain = #{commentContain,jdbcType=VARCHAR},
+      comment_date = #{commentDate,jdbcType=TIMESTAMP}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+</mapper>

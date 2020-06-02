@@ -30,7 +30,7 @@ spring:
   profiles: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/manage_project?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/web_work_onclass?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: 168168
   servlet:
@@ -81,7 +81,7 @@ spring:
   profiles: online
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/manage_project?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/web_work_onclass?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: Yongle@lol0418
     servlet:

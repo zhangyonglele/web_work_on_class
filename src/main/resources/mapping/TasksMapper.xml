@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.web_work_on_class.mapper.TasksMapper">
+  <resultMap id="BaseResultMap" type="com.work.web_work_on_class.model.Tasks">
+    <id column="task_id" jdbcType="INTEGER" property="taskId" />
+    <result column="task_belong" jdbcType="INTEGER" property="taskBelong" />
+    <result column="task_taken_status" jdbcType="INTEGER" property="taskTakenStatus" />
+    <result column="task_taker" jdbcType="INTEGER" property="taskTaker" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_request" jdbcType="VARCHAR" property="taskRequest" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    task_id, task_belong, task_taken_status, task_taker, task_name, task_request
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tasks
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tasks
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="task_id" keyProperty="taskId" parameterType="com.work.web_work_on_class.model.Tasks" useGeneratedKeys="true">
+    insert into tasks (task_belong, task_taken_status, task_taker, 
+      task_name, task_request)
+    values (#{taskBelong,jdbcType=INTEGER}, #{taskTakenStatus,jdbcType=INTEGER}, #{taskTaker,jdbcType=INTEGER}, 
+      #{taskName,jdbcType=VARCHAR}, #{taskRequest,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="task_id" keyProperty="taskId" parameterType="com.work.web_work_on_class.model.Tasks" useGeneratedKeys="true">
+    insert into tasks
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskBelong != null">
+        task_belong,
+      </if>
+      <if test="taskTakenStatus != null">
+        task_taken_status,
+      </if>
+      <if test="taskTaker != null">
+        task_taker,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="taskRequest != null">
+        task_request,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskBelong != null">
+        #{taskBelong,jdbcType=INTEGER},
+      </if>
+      <if test="taskTakenStatus != null">
+        #{taskTakenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taskTaker != null">
+        #{taskTaker,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskRequest != null">
+        #{taskRequest,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.work.web_work_on_class.model.Tasks">
+    update tasks
+    <set>
+      <if test="taskBelong != null">
+        task_belong = #{taskBelong,jdbcType=INTEGER},
+      </if>
+      <if test="taskTakenStatus != null">
+        task_taken_status = #{taskTakenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taskTaker != null">
+        task_taker = #{taskTaker,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskRequest != null">
+        task_request = #{taskRequest,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.work.web_work_on_class.model.Tasks">
+    update tasks
+    set task_belong = #{taskBelong,jdbcType=INTEGER},
+      task_taken_status = #{taskTakenStatus,jdbcType=INTEGER},
+      task_taker = #{taskTaker,jdbcType=INTEGER},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      task_request = #{taskRequest,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+</mapper>

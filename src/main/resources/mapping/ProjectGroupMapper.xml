@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.web_work_on_class.mapper.ProjectGroupMapper">
+  <resultMap id="BaseResultMap" type="com.work.web_work_on_class.model.ProjectGroup">
+    <id column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="group_begin_date" jdbcType="TIMESTAMP" property="groupBeginDate" />
+    <result column="group_end_date" jdbcType="TIMESTAMP" property="groupEndDate" />
+    <result column="group_can_be_search" jdbcType="INTEGER" property="groupCanBeSearch" />
+    <result column="group_creater" jdbcType="INTEGER" property="groupCreater" />
+    <result column="group_introduction" jdbcType="VARCHAR" property="groupIntroduction" />
+    <result column="group_status" jdbcType="INTEGER" property="groupStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    group_id, group_name, group_begin_date, group_end_date, group_can_be_search, group_creater, 
+    group_introduction, group_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_group
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project_group
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroup" useGeneratedKeys="true">
+    insert into project_group (group_name, group_begin_date, group_end_date, 
+      group_can_be_search, group_creater, group_introduction, 
+      group_status)
+    values (#{groupName,jdbcType=VARCHAR}, #{groupBeginDate,jdbcType=TIMESTAMP}, #{groupEndDate,jdbcType=TIMESTAMP}, 
+      #{groupCanBeSearch,jdbcType=INTEGER}, #{groupCreater,jdbcType=INTEGER}, #{groupIntroduction,jdbcType=VARCHAR}, 
+      #{groupStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroup" useGeneratedKeys="true">
+    insert into project_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="groupBeginDate != null">
+        group_begin_date,
+      </if>
+      <if test="groupEndDate != null">
+        group_end_date,
+      </if>
+      <if test="groupCanBeSearch != null">
+        group_can_be_search,
+      </if>
+      <if test="groupCreater != null">
+        group_creater,
+      </if>
+      <if test="groupIntroduction != null">
+        group_introduction,
+      </if>
+      <if test="groupStatus != null">
+        group_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupBeginDate != null">
+        #{groupBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupEndDate != null">
+        #{groupEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupCanBeSearch != null">
+        #{groupCanBeSearch,jdbcType=INTEGER},
+      </if>
+      <if test="groupCreater != null">
+        #{groupCreater,jdbcType=INTEGER},
+      </if>
+      <if test="groupIntroduction != null">
+        #{groupIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="groupStatus != null">
+        #{groupStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.work.web_work_on_class.model.ProjectGroup">
+    update project_group
+    <set>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupBeginDate != null">
+        group_begin_date = #{groupBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupEndDate != null">
+        group_end_date = #{groupEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupCanBeSearch != null">
+        group_can_be_search = #{groupCanBeSearch,jdbcType=INTEGER},
+      </if>
+      <if test="groupCreater != null">
+        group_creater = #{groupCreater,jdbcType=INTEGER},
+      </if>
+      <if test="groupIntroduction != null">
+        group_introduction = #{groupIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="groupStatus != null">
+        group_status = #{groupStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.work.web_work_on_class.model.ProjectGroup">
+    update project_group
+    set group_name = #{groupName,jdbcType=VARCHAR},
+      group_begin_date = #{groupBeginDate,jdbcType=TIMESTAMP},
+      group_end_date = #{groupEndDate,jdbcType=TIMESTAMP},
+      group_can_be_search = #{groupCanBeSearch,jdbcType=INTEGER},
+      group_creater = #{groupCreater,jdbcType=INTEGER},
+      group_introduction = #{groupIntroduction,jdbcType=VARCHAR},
+      group_status = #{groupStatus,jdbcType=INTEGER}
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+</mapper>
