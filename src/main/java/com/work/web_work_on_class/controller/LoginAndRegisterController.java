@@ -35,20 +35,16 @@ public class LoginAndRegisterController {
                                        @RequestParam("password")String password,
                                        HttpSession session){
         User data = null;
+        //登录检查是否为邮箱登录方法
         if(account.contains("@")){
             data = userService.getUserByEmail(account);
-            if(data != null && !data.getUserEmail().equals("") && data.getUserPassword().equals(password)){
-                session.setAttribute("auth","user");
-                session.setAttribute("userInfo",data);
-                return new UniversalResponseBody(0,"success");
-            }
         }else{
             data = userService.getUserByTel(account);
-            if(data != null && !data.getUserEmail().equals("") && data.getUserPassword().equals(password)){
-                session.setAttribute("auth","user");
-                session.setAttribute("userInfo",data);
-                return new UniversalResponseBody(0,"success");
-            }
+        }
+        if(data != null && !data.getUserEmail().equals("") && data.getUserPassword().equals(password)){
+            session.setAttribute("auth","user");
+            session.setAttribute("userInfo",data);
+            return new UniversalResponseBody(0,"success");
         }
         return new UniversalResponseBody(-1,"auth refuse");
     }

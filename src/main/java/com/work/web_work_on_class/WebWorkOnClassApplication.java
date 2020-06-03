@@ -25,7 +25,6 @@ public class WebWorkOnClassApplication {
     @Bean
     public CookieSerializer httpSessionIdResolver() {
         DefaultCookieSerializer cookieSerializer = new DefaultCookieSerializer();
-        //cookieSerializer.setCookieName("token");
         cookieSerializer.setUseHttpOnlyCookie(false);
         cookieSerializer.setSameSite("None");
         cookieSerializer.setUseSecureCookie(true);

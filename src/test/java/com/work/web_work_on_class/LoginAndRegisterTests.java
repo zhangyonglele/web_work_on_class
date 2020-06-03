@@ -4,9 +4,13 @@ import com.work.web_work_on_class.controller.LoginAndRegisterController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.servlet.server.Session;
+
+import javax.servlet.http.HttpSession;
 
 @SpringBootTest
 public class LoginAndRegisterTests {
+
 
     /**
      * 测试目标：Login AND Register
@@ -22,4 +26,5 @@ public class LoginAndRegisterTests {
     public void testRegister(){
         loginAndRegisterController.register("19999","test@yeah.net","test","test");
     }
+
 }
