@@ -2,6 +2,7 @@ package com.work.web_work_on_class.controller;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.work.web_work_on_class.filter.annotation.LoginRequire;
 import com.work.web_work_on_class.model.ProjectGroup;
 import com.work.web_work_on_class.model.User;
 import com.work.web_work_on_class.model.UserGroupRelation;
@@ -19,10 +21,11 @@ import com.work.web_work_on_class.util.UniversalResponseBody;
 @RestController
 public class JoinController {
 
-	@Autowired
+	@Resource
 	UserGroupRelationService userGroupRelationService;
 	
 	@PostMapping("/ProjectGroup/join")
+	@LoginRequire("user")
 	public UniversalResponseBody register(@RequestParam("groupId")String groupId,
             							  HttpSession session){
 		Date joinTime = new Date();
