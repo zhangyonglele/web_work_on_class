@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import com.work.web_work_on_class.util.String2DateUtils;
 import com.work.web_work_on_class.util.UniversalResponseBody;
 
 @RestController
+@CrossOrigin(allowCredentials = "true",origins = {"http://localhost:8081","*"})
 public class CreateTasksController {
 
 	@Resource

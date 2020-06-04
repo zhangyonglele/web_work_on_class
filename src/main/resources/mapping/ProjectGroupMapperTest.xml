@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.work.web_work_on_class.mapper.ProjectGroupMapper">
-  <resultMap id="BaseResultMap" type="com.work.web_work_on_class.model.ProjectGroup">
+<mapper namespace="com.work.web_work_on_class.mapper.ProjectGroupMapperTest">
+  <resultMap id="BaseResultMap" type="com.work.web_work_on_class.model.ProjectGroupTest">
     <id column="group_id" jdbcType="INTEGER" property="groupId" />
     <result column="group_name" jdbcType="VARCHAR" property="groupName" />
     <result column="group_begin_date" jdbcType="TIMESTAMP" property="groupBeginDate" />
@@ -12,7 +12,7 @@
     <result column="group_status" jdbcType="INTEGER" property="groupStatus" />
   </resultMap>
   <sql id="Base_Column_List">
-    group_id, group_name, group_begin_date, group_end_date, group_can_be_search, group_creator,
+    group_id, group_name, group_begin_date, group_end_date, group_can_be_search, group_creator, 
     group_introduction, group_status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -23,23 +23,25 @@
   </select>
   <select id="selectGroupByCreator" resultMap="BaseResultMap">
     select
-    *
+      *
     from project_group
     where group_creator = #{creatorId}
+        and group_status = 0
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from project_group
     where group_id = #{groupId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroup" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroupTest" useGeneratedKeys="true">
     insert into project_group (group_name, group_begin_date, group_end_date, 
-      group_can_be_search, group_creator, group_introduction,
+      group_can_be_search, group_creator, group_introduction, 
       group_status)
     values (#{groupName,jdbcType=VARCHAR}, #{groupBeginDate,jdbcType=TIMESTAMP}, #{groupEndDate,jdbcType=TIMESTAMP}, 
-      #{groupCanBeSearch,jdbcType=INTEGER}, #{groupCreator,jdbcType=INTEGER}, #{groupIntroduction,jdbcType=VARCHAR},
+      #{groupCanBeSearch,jdbcType=INTEGER}, #{groupCreator,jdbcType=INTEGER}, #{groupIntroduction,jdbcType=VARCHAR}, 
       #{groupStatus,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroup" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="group_id" keyProperty="groupId" parameterType="com.work.web_work_on_class.model.ProjectGroupTest" useGeneratedKeys="true">
     insert into project_group
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="groupName != null">
@@ -88,7 +90,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.work.web_work_on_class.model.ProjectGroup">
+  <update id="updateByPrimaryKeySelective" parameterType="com.work.web_work_on_class.model.ProjectGroupTest">
     update project_group
     <set>
       <if test="groupName != null">
@@ -115,7 +117,7 @@
     </set>
     where group_id = #{groupId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.work.web_work_on_class.model.ProjectGroup">
+  <update id="updateByPrimaryKey" parameterType="com.work.web_work_on_class.model.ProjectGroupTest">
     update project_group
     set group_name = #{groupName,jdbcType=VARCHAR},
       group_begin_date = #{groupBeginDate,jdbcType=TIMESTAMP},

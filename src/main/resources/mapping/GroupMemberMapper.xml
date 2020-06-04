@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.web_work_on_class.mapper.GroupMemberMapper">
+  <resultMap id="BaseResultMap" type="com.work.web_work_on_class.dto.GroupMember">
+    <result column="relation_id" jdbcType="INTEGER" property="relationId" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="join_time" jdbcType="TIMESTAMP" property="joinTime" />
+    <result column="user_nick_name" jdbcType="VARCHAR" property="userNickName" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <select id="selectMyGroupMember" resultMap="BaseResultMap">
+    select
+    *
+    from group_member
+    where group_id = #{groupId}
+  </select>
+  <insert id="insert" parameterType="com.work.web_work_on_class.dto.GroupMember">
+    insert into group_member (relation_id, group_id, join_time, 
+      user_nick_name, user_email, user_id
+      )
+    values (#{relationId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, #{joinTime,jdbcType=TIMESTAMP}, 
+      #{userNickName,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.work.web_work_on_class.dto.GroupMember">
+    insert into group_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        relation_id,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="joinTime != null">
+        join_time,
+      </if>
+      <if test="userNickName != null">
+        user_nick_name,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relationId != null">
+        #{relationId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="joinTime != null">
+        #{joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userNickName != null">
+        #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

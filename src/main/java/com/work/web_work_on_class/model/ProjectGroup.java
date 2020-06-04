@@ -8,7 +8,7 @@ import lombok.Data;
  * project_group
  * @author 
  */
-@Data
+
 public class ProjectGroup implements Serializable {
     private Integer groupId;
 
