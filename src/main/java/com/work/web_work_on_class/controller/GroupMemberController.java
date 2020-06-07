@@ -3,6 +3,7 @@ package com.work.web_work_on_class.controller;
 import com.work.web_work_on_class.filter.annotation.LoginRequire;
 import com.work.web_work_on_class.service.GroupMemberService;
 import com.work.web_work_on_class.util.UniversalResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
+@CrossOrigin(allowCredentials = "true",origins = {"http://localhost:8080","*"})
 public class GroupMemberController {
     @Resource
     private GroupMemberService groupMemberService;

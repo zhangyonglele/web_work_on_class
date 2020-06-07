@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin(allowCredentials = "true",origins = {"http://localhost:8081","*"})
+@CrossOrigin(allowCredentials = "true",origins = {"http://localhost:8080","*"})
 public class LoginAndRegisterController {
     @Resource
     private UserService userService;

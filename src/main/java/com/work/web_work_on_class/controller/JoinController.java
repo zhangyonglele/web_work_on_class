@@ -20,7 +20,7 @@ import com.work.web_work_on_class.util.String2DateUtils;
 import com.work.web_work_on_class.util.UniversalResponseBody;
 
 @RestController
-@CrossOrigin(allowCredentials = "true",origins = {"http://localhost:8081","*"})
+@CrossOrigin(allowCredentials = "true",origins = {"http://localhost:8080","*"})
 public class JoinController {
 
 	@Resource
