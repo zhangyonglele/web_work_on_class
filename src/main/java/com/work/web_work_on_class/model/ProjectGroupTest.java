@@ -26,5 +26,5 @@ public class ProjectGroupTest implements Serializable {
 
     private Integer groupStatus;
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 999934567L;
 }

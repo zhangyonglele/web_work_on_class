@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $.post("https://118.178.190.4/secondproject/user/login",{account:"test@yeah.net",password:"test"},function(data,status){
+                alert("数据: " + data + "\n状态: " + status);
+            });
+        });
+    });
+</script>
+<button>发送一个 HTTP GET 请求并获取返回结果</button>
+</body>
+</html>

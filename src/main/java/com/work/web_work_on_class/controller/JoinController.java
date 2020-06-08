@@ -28,13 +28,12 @@ public class JoinController {
 	
 	@PostMapping("/ProjectGroup/join")
 	@LoginRequire("user")
-	public UniversalResponseBody register(@RequestParam("groupId")String groupId,
+	public UniversalResponseBody register(@RequestParam("groupId")int groupId,
             							  HttpSession session){
 		Date joinTime = new Date();
-		Integer groupId1 = Integer.valueOf(groupId);
 		Integer userId = ((User) (session.getAttribute("userInfo"))).getUserId();
 		String nickyName = ((User) (session.getAttribute("userInfo"))).getUserNickName();
-		UserGroupRelation record = new UserGroupRelation(userId, groupId1, nickyName, joinTime);
+		UserGroupRelation record = new UserGroupRelation(userId, groupId, nickyName, joinTime);
 		if(userGroupRelationService.addUserGroupRelation(record)){
 			return new UniversalResponseBody(0,"success");
 		}else{

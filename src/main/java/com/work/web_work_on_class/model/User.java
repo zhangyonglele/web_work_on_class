@@ -9,6 +9,8 @@ import lombok.Data;
  */
 @Data
 public class User implements Serializable {
+	private static final long serialVersionUID = -999934597L;
+
     private Integer userId;
 
     private String userNickName;
@@ -26,7 +28,6 @@ public class User implements Serializable {
 
     private String userTel;
 
-    private static final long serialVersionUID = 1L;
 
 	public Integer getUserId() {
 		return userId;

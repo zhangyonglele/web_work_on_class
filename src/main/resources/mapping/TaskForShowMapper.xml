@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.web_work_on_class.mapper.TaskForShowMapper">
+  <resultMap id="BaseResultMap" type="com.work.web_work_on_class.dto.TaskForShow">
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_belong" jdbcType="INTEGER" property="taskBelong" />
+    <result column="user_nick_name" jdbcType="VARCHAR" property="userNickName" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="task_request" jdbcType="VARCHAR" property="taskRequest" />
+    <result column="task_deadline" jdbcType="TIMESTAMP" property="taskDeadline" />
+    <result column="task_taken_status" jdbcType="INTEGER" property="taskTakenStatus" />
+    <result column="task_taker" jdbcType="INTEGER" property="taskTaker"/>
+  </resultMap>
+  <select id="selectByGroupId" resultMap="BaseResultMap">
+    select *
+    from task_for_show
+    where task_belong = #{groupId}
+  </select>
+  <select id="selectMyWaitingForTakeTask" resultMap="BaseResultMap">
+    select *
+    from task_for_show
+    where task_taker = #{userId} and task_belong = #{groupId} and task_taken_status = 0
+  </select>
+  <select id="selectMyIncompleteTask" resultMap="BaseResultMap">
+    select *
+    from task_for_show
+    where task_taker = #{userId} and task_belong = #{groupId} and task_taken_status = 1
+  </select>
+  <select id="selectMyFinishedTask" resultMap="BaseResultMap">
+    select *
+    from task_for_show
+    where task_taker = #{userId} and task_belong = #{groupId} and task_taken_status = 2 or task_taken_status = 3
+  </select>
+
+</mapper>

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import com.work.web_work_on_class.filter.annotation.GroupAuthRequire;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,17 +27,16 @@ public class CreateTasksController {
 	
 	@PostMapping("/Tasks/new")
 	@LoginRequire("user")
+	@GroupAuthRequire
 	public UniversalResponseBody register(@RequestParam("taskName")String taskName,
-										  @RequestParam("taskTaker")String taskTaker,
+										  @RequestParam("taskTaker")int taskTaker,
+            							  @RequestParam("groupId")int taskBelong,
             							  @RequestParam("taskRequest")String taskRequest,
             							  @RequestParam("taskDeadline")String taskDeadline,
             							  HttpSession session){
 		Date taskDeadline1 = String2DateUtils.parseDateStr(taskDeadline);
 		//假设前端传来的数据是负责人id
-		Integer taskTaker1 = Integer.valueOf(taskTaker);
-		//假设session中储存了项目信息
-		Integer taskBelong = ((ProjectGroup) (session.getAttribute("ProjectGroupInfo"))).getGroupId();
-		Tasks record = new Tasks(taskBelong, taskTaker1, taskName, taskRequest, taskDeadline1);
+		Tasks record = new Tasks(taskBelong, taskTaker, taskName, taskRequest, taskDeadline1);
 		if(tasksService.addTasks(record)){
 			return new UniversalResponseBody(0,"success");
 		}else{

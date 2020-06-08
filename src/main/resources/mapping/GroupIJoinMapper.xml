@@ -16,6 +16,11 @@
     from group_i_join
     where user_id = #{userId}
   </select>
+  <select id="checkTheGroupIJoinOrNot" resultMap="BaseResultMap">
+    select *
+    from group_i_join
+    where user_id = #{userId} and group_id = #{groupId}
+  </select>
   <insert id="insert" parameterType="com.work.web_work_on_class.dto.GroupIJoin">
     insert into group_i_join (user_id, group_id, group_name, 
       group_begin_date, group_end_date, group_creator, 

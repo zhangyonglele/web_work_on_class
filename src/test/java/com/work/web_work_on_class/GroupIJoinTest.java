@@ -11,7 +11,7 @@ public class GroupIJoinTest {
     private GroupIJoinService groupIJoinService;
 
     @Test
-    public void test(){
+    public void testGetGroupIJoin(){
         System.out.println(groupIJoinService.getGroupIJoin(1).toString());
     }
 }
