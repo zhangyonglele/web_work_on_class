@@ -1,5 +1,6 @@
 package com.work.web_work_on_class.config;
 
+import com.work.web_work_on_class.filter.CreatorAuthInterceptor;
 import com.work.web_work_on_class.filter.GroupAuthInterceptor;
 import com.work.web_work_on_class.filter.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,19 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     private final GroupAuthInterceptor groupAuthInterceptor;
 
+    private final CreatorAuthInterceptor creatorAuthInterceptor;
+
     @Autowired
-    public InterceptorConfig(LoginInterceptor loginInterceptor, GroupAuthInterceptor groupAuthInterceptor) {
+    public InterceptorConfig(LoginInterceptor loginInterceptor, GroupAuthInterceptor groupAuthInterceptor, CreatorAuthInterceptor creatorAuthInterceptor) {
         this.loginInterceptor = loginInterceptor;
         this.groupAuthInterceptor = groupAuthInterceptor;
+        this.creatorAuthInterceptor = creatorAuthInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
         registry.addInterceptor(groupAuthInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(creatorAuthInterceptor).addPathPatterns("/**");
     }
 }

@@ -29,6 +29,11 @@
         and group_status = 0
 
   </select>
+  <select id="checkICreateThisGroupOrNot" resultMap="BaseResultMap">
+    select *
+    from project_group
+    where group_id = #{groupId} and group_creator = #{userId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from project_group
     where group_id = #{groupId,jdbcType=INTEGER}

@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import com.work.web_work_on_class.filter.annotation.CreatorAuthRequire;
+import com.work.web_work_on_class.service.combine.JoinGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,17 +26,14 @@ import com.work.web_work_on_class.util.UniversalResponseBody;
 public class JoinController {
 
 	@Resource
-	UserGroupRelationService userGroupRelationService;
+	private JoinGroupService joinGroupService;
 	
 	@PostMapping("/ProjectGroup/join")
 	@LoginRequire("user")
-	public UniversalResponseBody register(@RequestParam("groupId")int groupId,
+	@CreatorAuthRequire
+	public UniversalResponseBody register(@RequestParam("groupId")int groupId,@RequestParam("account")String account,
             							  HttpSession session){
-		Date joinTime = new Date();
-		Integer userId = ((User) (session.getAttribute("userInfo"))).getUserId();
-		String nickyName = ((User) (session.getAttribute("userInfo"))).getUserNickName();
-		UserGroupRelation record = new UserGroupRelation(userId, groupId, nickyName, joinTime);
-		if(userGroupRelationService.addUserGroupRelation(record)){
+		if(joinGroupService.JoinGroup(groupId,account)){
 			return new UniversalResponseBody(0,"success");
 		}else{
 			return new UniversalResponseBody(-1,"error");

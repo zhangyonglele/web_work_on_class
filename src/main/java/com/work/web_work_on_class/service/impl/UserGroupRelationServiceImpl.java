@@ -8,6 +8,7 @@ import com.work.web_work_on_class.service.UserGroupRelationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 @Service
 public class UserGroupRelationServiceImpl implements UserGroupRelationService {
@@ -16,14 +17,20 @@ public class UserGroupRelationServiceImpl implements UserGroupRelationService {
 	UserGroupRelationMapper userGroupRelationMapper;
 
 	@Override
-	public boolean addUserGroupRelation(UserGroupRelation userGroupRelation) {
+	public boolean addUserGroupRelation(int userId,int groupId) {
+		UserGroupRelation relation = new UserGroupRelation();
+		relation.setGroupId(groupId);
+		relation.setUserId(userId);
+		relation.setJoinTime(new Date());
+		relation.setNickyName("default");
+		boolean flag = false;
 		try {
-			userGroupRelationMapper.insert(userGroupRelation);
-			return true;
+			userGroupRelationMapper.insert(relation);
+			flag =  true;
 		} catch(Exception e) {
 			e.printStackTrace();
-			return false;
 		}
+		return flag;
 	}
 
 }

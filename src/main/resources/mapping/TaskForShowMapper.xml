@@ -10,6 +10,7 @@
     <result column="task_deadline" jdbcType="TIMESTAMP" property="taskDeadline" />
     <result column="task_taken_status" jdbcType="INTEGER" property="taskTakenStatus" />
     <result column="task_taker" jdbcType="INTEGER" property="taskTaker"/>
+    <result column="task_id" jdbcType="INTEGER" property="taskId"/>
   </resultMap>
   <select id="selectByGroupId" resultMap="BaseResultMap">
     select *

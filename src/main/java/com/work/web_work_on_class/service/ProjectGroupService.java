@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface ProjectGroupService {
 	
-    boolean addNewGroup(ProjectGroup record);
+    Integer addNewGroup(ProjectGroup record);
 
     ProjectGroup getGroupInfo(int groupId);
 
     List<ProjectGroup> getGroupByCreatorId(int creatorId);
+
+    boolean checkICreateGroupOrNot(int groupId,int userId);
 }

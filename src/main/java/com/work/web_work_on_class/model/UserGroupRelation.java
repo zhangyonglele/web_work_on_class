@@ -22,6 +22,10 @@ public class UserGroupRelation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public UserGroupRelation(){
+
+	}
+
     public UserGroupRelation(Integer userId, Integer groupId, String nickyName, Date joinTime) {
     	this.userId = userId;
     	this.groupId = groupId;

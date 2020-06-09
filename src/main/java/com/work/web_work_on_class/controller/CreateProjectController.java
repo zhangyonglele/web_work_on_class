@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import com.work.web_work_on_class.filter.annotation.LoginRequire;
+import com.work.web_work_on_class.service.combine.JoinGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class CreateProjectController {
 	ProjectGroupService projectGroupService;
 
 	@Resource
-	UserGroupRelationService userGroupRelationService;
+	private JoinGroupService joinGroupService;
 	
 	@PostMapping("/ProjectGroup/new")
 	@LoginRequire("user")
@@ -46,14 +47,14 @@ public class CreateProjectController {
 		String nickyName = ((User) (session.getAttribute("userInfo"))).getUserNickName();
 		Date joinTime = new Date();
 		ProjectGroup record = new ProjectGroup(groupName, groupBeginDate1, groupEndDate1, groupCanBeSearch1, groupCreater, groupIntroduction);
-        if(projectGroupService.addNewGroup(record)){
-        	Integer userId = record.getGroupId();
-        	UserGroupRelation record2 = new UserGroupRelation(groupCreater, userId, nickyName, joinTime);
-        	userGroupRelationService.addUserGroupRelation(record2);
-        	return new UniversalResponseBody(0,"success");
-        }else{
-            return new UniversalResponseBody(-1,"error");
+		Integer index = projectGroupService.addNewGroup(record);
+        if(index > 0){
+        	if (joinGroupService.JoinGroup(index,((User)session.getAttribute("userInfo")).getUserEmail())){
+				return new UniversalResponseBody(0,"success");
+			}
         }
+        return new UniversalResponseBody(-1,"error");
+
     }
 	
 }

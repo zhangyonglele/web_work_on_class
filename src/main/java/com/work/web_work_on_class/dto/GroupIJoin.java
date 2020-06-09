@@ -2,6 +2,8 @@ package com.work.web_work_on_class.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -15,9 +17,9 @@ public class GroupIJoin implements Serializable {
     private Integer groupId;
 
     private String groupName;
-
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date groupBeginDate;
-
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date groupEndDate;
 
     private Integer groupCreator;

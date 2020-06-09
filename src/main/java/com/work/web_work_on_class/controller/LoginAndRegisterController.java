@@ -1,12 +1,10 @@
 package com.work.web_work_on_class.controller;
 
+import com.work.web_work_on_class.filter.annotation.LoginRequire;
 import com.work.web_work_on_class.model.User;
 import com.work.web_work_on_class.service.UserService;
 import com.work.web_work_on_class.util.UniversalResponseBody;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -47,5 +45,12 @@ public class LoginAndRegisterController {
             return new UniversalResponseBody(0,"success");
         }
         return new UniversalResponseBody(-1,"auth refuse");
+    }
+
+    @DeleteMapping("/logout")
+    @LoginRequire("user")
+    public UniversalResponseBody destroySession(HttpSession session){
+        session.invalidate();
+        return new UniversalResponseBody(0,"success");
     }
 }
