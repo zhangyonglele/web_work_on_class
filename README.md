@@ -50,6 +50,8 @@ https://github.com/kokola99/vue_web
 环境需求：
 1. Redis
 2. MySQL 5.7
+3. Nginx
+4. JDK11
 
 ```bash
 nohup java -jar <project file> <spring config> > <log name> 2>&1 &
